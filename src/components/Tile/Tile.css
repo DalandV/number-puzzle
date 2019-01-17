@@ -1,0 +1,23 @@
+.empty-tile {
+  background-color: black;
+  padding: 5px;
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+  /* display: inline-block; */
+  float:left;
+}
+.tile {
+  background-color: lightblue;
+  padding: 5px;
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+  /* display: inline-block; */
+  text-align: center;
+  font-size: 90px;
+  float:left;
+}
+/* .tile-span{
+  font-size: 90px;
+} */
