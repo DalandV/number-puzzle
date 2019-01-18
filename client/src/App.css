@@ -5,8 +5,9 @@
   width: 150px;
   height: 150px;
   /* display: inline-block; */
-  float:left;
+  float: left;
 }
+
 .tile {
   background-color: lightblue;
   padding: 5px;
@@ -16,5 +17,5 @@
   /* display: inline-block; */
   text-align: center;
   font-size: 90px;
-  float:left;
+  float: left;
 }
