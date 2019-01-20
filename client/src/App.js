@@ -10,15 +10,33 @@ import tiles from "./tiles.json";
 
 class App extends Component {
   state = {
-    tiles: tiles.sort(function(a, b) {
-      return 0.5 - Math.random();
-    }),
+    tiles: tiles,
     emptySpaceIndex: tiles.findIndex(x => x.id === 0),
-    clickedTileIndex: null
+    clickedTileIndex: null,
+    youWon: [
+      { id: 1, value: 1 },
+      { id: 2, value: 2 },
+      { id: 3, value: 3 },
+      { id: 4, value: 4 },
+      { id: 5, value: 5 },
+      { id: 6, value: 6 },
+      { id: 7, value: 7 },
+      { id: 8, value: 8 },
+      { id: 0, value: 0 }
+    ]
   };
 
-  componentDidMount = () => {
-    console.log(`Empty space index on load: ${this.state.emptySpaceIndex}`);
+  // TEMPORARY
+  // .sort(function(a, b) {
+  //   return 0.5 - Math.random();
+  // })
+
+  winChecker = () => {
+    const check =
+      JSON.stringify(this.state.tiles) === JSON.stringify(this.state.youWon);
+    if (check === true) {
+      console.log(`Congrats you win!!!!`);
+    }
   };
 
   handleTileClick = tile => {
@@ -31,22 +49,16 @@ class App extends Component {
           const indexOne = this.state.emptySpaceIndex;
           const indexTwo = this.state.clickedTileIndex;
           const result = indexOne - indexTwo;
-          const test = () => {
-            console.log(`You clicked tile ${tile.value}!`);
-            console.log(`Clicked Tile Index: ${this.state.clickedTileIndex}`);
-            console.log(`These two can be switched!`);
-            this.swapArrayElements();
-          };
 
           if (result === 3 || result === -3) {
-            test();
+            this.swapArrayElements();
           } else if (result === -1) {
             if (indexTwo !== 3 && indexTwo !== 6) {
-              test();
+              this.swapArrayElements();
             }
           } else if (result === 1) {
             if (indexTwo !== 2 && indexTwo !== 5) {
-              test();
+              this.swapArrayElements();
             }
           }
         }
@@ -64,11 +76,7 @@ class App extends Component {
     tilesV[cTIV] = temp;
 
     this.setState({ emptySpaceIndex: cTIV }, () => {
-      console.log(
-        `Clicked tile after set state: ${this.state.clickedTileIndex}`
-      );
-      console.log(`Empty Space Index: ${this.state.emptySpaceIndex}`);
-      console.log(this.state.tiles);
+      this.winChecker();
     });
   };
 
