@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
+// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Wrapper from "./components/Wrapper";
+import ModalBS from "./components/Modal";
 import Navbar from "./components/Navbar";
 import Gameboard from "./components/Gameboard";
 import Tile from "./components/Tile";
@@ -10,10 +12,13 @@ import tiles from "./tiles.json";
 
 class App extends Component {
   state = {
-    tiles: tiles,
+    tiles: tiles.sort(function(a, b) {
+      return 0.5 - Math.random();
+    }),
     emptySpaceIndex: tiles.findIndex(x => x.id === 0),
     clickedTileIndex: null,
-    youWon: [
+    didUserWin: false,
+    winningPattern: [
       { id: 1, value: 1 },
       { id: 2, value: 2 },
       { id: 3, value: 3 },
@@ -33,8 +38,10 @@ class App extends Component {
 
   winChecker = () => {
     const check =
-      JSON.stringify(this.state.tiles) === JSON.stringify(this.state.youWon);
+      JSON.stringify(this.state.tiles) ===
+      JSON.stringify(this.state.winningPattern);
     if (check === true) {
+      this.setState({ didUserWin: true });
       console.log(`Congrats you win!!!!`);
     }
   };
@@ -102,9 +109,14 @@ class App extends Component {
     }
   };
 
+  toggle = () => {
+    this.setState({ didUserWin: false });
+  };
+
   render() {
     return (
       <Wrapper>
+        <ModalBS didUserWin={this.state.didUserWin} toggle={this.toggle} />
         <Navbar />
         <Gameboard>
           {this.state.tiles.map(tile => (
