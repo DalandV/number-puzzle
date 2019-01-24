@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import "./App.css";
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {
+  Button,
+  Form,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from "reactstrap";
 import Wrapper from "./components/Wrapper";
-import ModalBS from "./components/Modal";
+// import ModalBS from "./components/Modal";
 import Navbar from "./components/Navbar";
+// import Leaderboard from "./components/Leaderboard";
 import Gameboard from "./components/Gameboard";
 import Tile from "./components/Tile";
 import NumSpan from "./components/NumSpan";
@@ -28,7 +37,8 @@ class App extends Component {
       { id: 7, value: 7 },
       { id: 8, value: 8 },
       { id: 0, value: 0 }
-    ]
+    ],
+    name: ""
   };
 
   // TEMPORARY
@@ -113,10 +123,67 @@ class App extends Component {
     this.setState({ didUserWin: false });
   };
 
+  handleInputChange = event => {
+    let value = event.target.value;
+    const name = event.target.name;
+
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log(`Hello ${this.state.name}`);
+    this.setState(
+      {
+        name: ""
+      },
+      () => this.toggle()
+    );
+  };
+
+  resetBoard = event => {
+    event.preventDefault();
+    this.setState({
+      tiles: tiles.sort(function(a, b) {
+        return 0.5 - Math.random();
+      })
+    });
+  };
+
   render() {
     return (
       <Wrapper>
-        <ModalBS didUserWin={this.state.didUserWin} toggle={this.toggle} />
+        <Modal
+          isOpen={this.state.didUserWin}
+          toggle={this.toggle}
+          centered={true}
+        >
+          <ModalHeader toggle={this.toggle}>You Won!!</ModalHeader>
+          <ModalBody>
+            Congratulations on completing the puzzle! Add your name below so
+            that you can be added to our leaderboard.
+            <Form className="mt-2">
+              <Input
+                value={this.state.name}
+                name="name"
+                type="text"
+                placeholder="Enter your name here"
+                onChange={this.handleInputChange}
+              />
+              <ModalFooter>
+                <Button color="primary" onClick={this.handleFormSubmit}>
+                  Add Me!
+                </Button>{" "}
+                <Button color="secondary" onClick={this.toggle}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </Form>
+          </ModalBody>
+        </Modal>
         <Navbar />
         <Gameboard>
           {this.state.tiles.map(tile => (
@@ -125,6 +192,7 @@ class App extends Component {
               tileObject={tile}
               class={this.handleStyleClasses(tile)}
               handleTileClick={this.handleTileClick}
+              resetBoard={this.resetBoard}
             >
               {this.renderNumSpan(tile)}
             </Tile>
