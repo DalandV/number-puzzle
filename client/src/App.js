@@ -144,8 +144,7 @@ class App extends Component {
     );
   };
 
-  resetBoard = event => {
-    event.preventDefault();
+  resetBoard = () => {
     this.setState({
       tiles: tiles.sort(function(a, b) {
         return 0.5 - Math.random();
@@ -185,14 +184,13 @@ class App extends Component {
           </ModalBody>
         </Modal>
         <Navbar />
-        <Gameboard>
+        <Gameboard resetBoard={this.resetBoard}>
           {this.state.tiles.map(tile => (
             <Tile
               key={tile.id}
               tileObject={tile}
               class={this.handleStyleClasses(tile)}
               handleTileClick={this.handleTileClick}
-              resetBoard={this.resetBoard}
             >
               {this.renderNumSpan(tile)}
             </Tile>
