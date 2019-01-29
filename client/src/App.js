@@ -46,16 +46,6 @@ class App extends Component {
   //   return 0.5 - Math.random();
   // })
 
-  winChecker = () => {
-    const check =
-      JSON.stringify(this.state.tiles) ===
-      JSON.stringify(this.state.winningPattern);
-    if (check === true) {
-      this.setState({ didUserWin: true });
-      console.log(`Congrats you win!!!!`);
-    }
-  };
-
   handleTileClick = tile => {
     // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
@@ -97,17 +87,27 @@ class App extends Component {
   };
 
   swapArrayElements = () => {
-    const tilesV = this.state.tiles;
-    const eSIV = this.state.emptySpaceIndex;
-    const cTIV = this.state.clickedTileIndex;
+    const tilesVar = this.state.tiles;
+    const eSI = this.state.emptySpaceIndex;
+    const cTI = this.state.clickedTileIndex;
 
-    const temp = tilesV[eSIV];
-    tilesV[eSIV] = tilesV[cTIV];
-    tilesV[cTIV] = temp;
+    const temp = tilesVar[eSI];
+    tilesVar[eSI] = tilesVar[cTI];
+    tilesVar[cTI] = temp;
 
-    this.setState({ emptySpaceIndex: cTIV }, () => {
+    this.setState({ emptySpaceIndex: cTI }, () => {
       this.winChecker();
     });
+  };
+
+  winChecker = () => {
+    const check =
+      JSON.stringify(this.state.tiles) ===
+      JSON.stringify(this.state.winningPattern);
+    if (check === true) {
+      this.setState({ didUserWin: true });
+      console.log(`Congrats you win!!!!`);
+    }
   };
 
   handleStyleClasses = tile => {
