@@ -57,23 +57,36 @@ class App extends Component {
   };
 
   handleTileClick = tile => {
+    // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
       this.setState(
         {
+          // Sets the 'clickedTileIndex' to the index of the clicked tile by comparing
+          // the id of each object in the 'tiles' array to the id of the tile passed in
+          // through the 'tileObject' prop
           clickedTileIndex: tiles.findIndex(x => x.id === tile.id)
         },
         () => {
+          // This section makes sure that the tiles cannot jump all over the board
           const indexOne = this.state.emptySpaceIndex;
           const indexTwo = this.state.clickedTileIndex;
           const result = indexOne - indexTwo;
-
+          // A result of 3 or -3 means that the tile the user clicked is directly above or below the empty space
           if (result === 3 || result === -3) {
             this.swapArrayElements();
-          } else if (result === -1) {
+          }
+          // A result of -1 means that the tile the user clicked is directly in front of the empty space
+          else if (result === -1) {
+            // Prevents clicked tiles at index 3 and 6 from teleporting
+            // to the other side of the board ie. indexes 2 and 5 respectively.
             if (indexTwo !== 3 && indexTwo !== 6) {
               this.swapArrayElements();
             }
-          } else if (result === 1) {
+          }
+          // A result of 1 means that the tile the user clicked is directly behind the empty space
+          else if (result === 1) {
+            // Prevents clicked tiles at index 2 and 5 from teleporting
+            // to the other side of the board ie. indexes 3 and 6 respectively.
             if (indexTwo !== 2 && indexTwo !== 5) {
               this.swapArrayElements();
             }
