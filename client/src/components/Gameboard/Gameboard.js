@@ -1,9 +1,9 @@
 import React from "react";
 import "./Gameboard.css";
 
-const style = {
-  width: "200"
-};
+// const style = {
+//   width: "200"
+// };
 
 const GameBoard = props => (
   <div className="container my-5">

@@ -57,10 +57,11 @@ class App extends Component {
           clickedTileIndex: tiles.findIndex(x => x.id === tile.id)
         },
         () => {
+          console.log(this.state.tiles);
           // This section makes sure that the tiles cannot jump all over the board
-          const indexOne = this.state.emptySpaceIndex;
-          const indexTwo = this.state.clickedTileIndex;
-          const result = indexOne - indexTwo;
+          const { emptySpaceIndex, clickedTileIndex } = this.state;
+          const result = emptySpaceIndex - clickedTileIndex;
+
           // A result of 3 or -3 means that the tile the user clicked is directly above or below the empty space
           if (result === 3 || result === -3) {
             this.swapArrayElements();
@@ -69,7 +70,7 @@ class App extends Component {
           else if (result === -1) {
             // Prevents clicked tiles at index 3 and 6 from teleporting
             // to the other side of the board ie. indexes 2 and 5 respectively.
-            if (indexTwo !== 3 && indexTwo !== 6) {
+            if (clickedTileIndex !== 3 && clickedTileIndex !== 6) {
               this.swapArrayElements();
             }
           }
@@ -77,7 +78,7 @@ class App extends Component {
           else if (result === 1) {
             // Prevents clicked tiles at index 2 and 5 from teleporting
             // to the other side of the board ie. indexes 3 and 6 respectively.
-            if (indexTwo !== 2 && indexTwo !== 5) {
+            if (clickedTileIndex !== 2 && clickedTileIndex !== 5) {
               this.swapArrayElements();
             }
           }
