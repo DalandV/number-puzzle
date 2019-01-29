@@ -88,15 +88,13 @@ class App extends Component {
   };
 
   swapArrayElements = () => {
-    const tilesVar = this.state.tiles;
-    const eSI = this.state.emptySpaceIndex;
-    const cTI = this.state.clickedTileIndex;
+    const { tiles, emptySpaceIndex, clickedTileIndex } = this.state;
 
-    const temp = tilesVar[eSI];
-    tilesVar[eSI] = tilesVar[cTI];
-    tilesVar[cTI] = temp;
+    const temp = tiles[emptySpaceIndex];
+    tiles[emptySpaceIndex] = tiles[clickedTileIndex];
+    tiles[clickedTileIndex] = temp;
 
-    this.setState({ emptySpaceIndex: cTI }, () => {
+    this.setState({ emptySpaceIndex: clickedTileIndex }, () => {
       this.winChecker();
     });
   };
