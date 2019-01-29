@@ -88,6 +88,8 @@ class App extends Component {
   };
 
   swapArrayElements = () => {
+    // This function swaps the array elements
+    // Im not sure how to explain it well but it works
     const { tiles, emptySpaceIndex, clickedTileIndex } = this.state;
 
     const temp = tiles[emptySpaceIndex];
@@ -100,6 +102,7 @@ class App extends Component {
   };
 
   winChecker = () => {
+    // Returns true or false
     const check =
       JSON.stringify(this.state.tiles) ===
       JSON.stringify(this.state.winningPattern);
