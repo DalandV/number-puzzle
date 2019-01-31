@@ -24,14 +24,21 @@ class App extends Component {
     tilesOnBoard: tilesArray.sort(function(a, b) {
       return 0.5 - Math.random();
     }),
+    winningPattern: [
+      { id: 1, value: 1 },
+      { id: 2, value: 2 },
+      { id: 3, value: 3 },
+      { id: 4, value: 4 },
+      { id: 5, value: 5 },
+      { id: 6, value: 6 },
+      { id: 7, value: 7 },
+      { id: 8, value: 8 },
+      { id: 0, value: 0 }
+    ],
     didUserWin: false,
+
     name: ""
   };
-
-  // TEMPORARY
-  // .sort(function(a, b) {
-  //   return 0.5 - Math.random();
-  // })
 
   handleTileClick = tile => {
     const emptySpaceIndex = this.state.tilesOnBoard.findIndex(x => x.id === 0);
@@ -83,7 +90,8 @@ class App extends Component {
   winChecker = () => {
     // Returns true or false
     const check =
-      JSON.stringify(this.state.tilesOnBoard) === JSON.stringify(tilesArray);
+      JSON.stringify(this.state.tilesOnBoard) ===
+      JSON.stringify(this.state.winningPattern);
     if (check === true) {
       this.setState({ didUserWin: true });
       console.log(`Congrats you win!!!!`);
