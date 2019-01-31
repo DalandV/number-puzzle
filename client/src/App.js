@@ -24,8 +24,6 @@ class App extends Component {
     tiles: tiles.sort(function(a, b) {
       return 0.5 - Math.random();
     }),
-    emptySpaceIndex: tiles.findIndex(x => x.id === 0),
-    clickedTileIndex: null,
     didUserWin: false,
     winningPattern: [
       { id: 1, value: 1 },
@@ -47,6 +45,8 @@ class App extends Component {
   // })
 
   handleTileClick = tile => {
+    const emptySpaceIndex = this.state.tiles.findIndex(x => x.id === 0);
+    const clickedTileIndex = this.state.tiles.findIndex(x => x.id === tile.id);
     // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
       this.setState(
