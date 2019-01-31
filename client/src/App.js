@@ -21,7 +21,7 @@ import tiles from "./tiles.json";
 
 class App extends Component {
   state = {
-    tiles: tiles.sort(function(a, b) {
+    tilesOnBoard: tiles.sort(function(a, b) {
       return 0.5 - Math.random();
     }),
     didUserWin: false,
@@ -46,8 +46,10 @@ class App extends Component {
   // })
 
   handleTileClick = tile => {
-    const emptySpaceIndex = this.state.tiles.findIndex(x => x.id === 0);
-    const clickedTileIndex = this.state.tiles.findIndex(x => x.id === tile.id);
+    const emptySpaceIndex = this.state.tilesOnBoard.findIndex(x => x.id === 0);
+    const clickedTileIndex = this.state.tilesOnBoard.findIndex(
+      x => x.id === tile.id
+    );
     // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
       // This section makes sure that the tiles cannot jump all over the board
@@ -79,13 +81,13 @@ class App extends Component {
   swapArrayElements = (emptySpaceIndex, clickedTileIndex) => {
     // This function swaps the array elements
     // Im not sure how to explain it well but it works
-    const newTiles = this.state.tiles.slice();
+    const newTiles = this.state.tilesOnBoard.slice();
 
     const temp = newTiles[emptySpaceIndex];
     newTiles[emptySpaceIndex] = newTiles[clickedTileIndex];
     newTiles[clickedTileIndex] = temp;
 
-    this.setState({ tiles: newTiles }, () => {
+    this.setState({ tilesOnBoard: newTiles }, () => {
       this.winChecker();
     });
   };
@@ -93,7 +95,7 @@ class App extends Component {
   winChecker = () => {
     // Returns true or false
     const check =
-      JSON.stringify(this.state.tiles) ===
+      JSON.stringify(this.state.tilesOnBoard) ===
       JSON.stringify(this.state.winningPattern);
     if (check === true) {
       this.setState({ didUserWin: true });
@@ -150,7 +152,7 @@ class App extends Component {
 
   resetBoard = () => {
     this.setState({
-      tiles: tiles.sort(function(a, b) {
+      tilesOnBoard: tiles.sort(function(a, b) {
         return 0.5 - Math.random();
       })
     });
@@ -189,7 +191,7 @@ class App extends Component {
         </Modal>
         <Navbar />
         <Gameboard resetBoard={this.resetBoard}>
-          {this.state.tiles.map(tile => (
+          {this.state.tilesOnBoard.map(tile => (
             <Tile
               key={tile.id}
               tileObject={tile}
