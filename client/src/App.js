@@ -51,7 +51,6 @@ class App extends Component {
     // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
       // This section makes sure that the tiles cannot jump all over the board
-      const { emptySpaceIndex, clickedTileIndex } = this.state;
       const result = emptySpaceIndex - clickedTileIndex;
 
       // A result of 3 or -3 means that the tile the user clicked is directly above or below the empty space
@@ -80,20 +79,15 @@ class App extends Component {
   swapArrayElements = () => {
     // This function swaps the array elements
     // Im not sure how to explain it well but it works
-    const { emptySpaceIndex, clickedTileIndex } = this.state;
-
     const newTiles = this.state.tiles.slice();
 
     const temp = newTiles[emptySpaceIndex];
     newTiles[emptySpaceIndex] = newTiles[clickedTileIndex];
     newTiles[clickedTileIndex] = temp;
 
-    this.setState(
-      { tiles: newTiles, emptySpaceIndex: clickedTileIndex },
-      () => {
-        this.winChecker();
-      }
-    );
+    this.setState({ tiles: newTiles }, () => {
+      this.winChecker();
+    });
   };
 
   winChecker = () => {
