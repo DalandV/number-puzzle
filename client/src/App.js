@@ -17,11 +17,11 @@ import Gameboard from "./components/Gameboard";
 import Tile from "./components/Tile";
 import NumSpan from "./components/NumSpan";
 import Footer from "./components/Footer";
-import tiles from "./tiles.json";
+import tilesArray from "./tiles.json";
 
 class App extends Component {
   state = {
-    tilesOnBoard: tiles.sort(function(a, b) {
+    tilesOnBoard: tilesArray.sort(function(a, b) {
       return 0.5 - Math.random();
     }),
     didUserWin: false,
@@ -152,7 +152,7 @@ class App extends Component {
 
   resetBoard = () => {
     this.setState({
-      tilesOnBoard: tiles.sort(function(a, b) {
+      tilesOnBoard: tilesArray.sort(function(a, b) {
         return 0.5 - Math.random();
       })
     });
