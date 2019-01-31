@@ -55,14 +55,14 @@ class App extends Component {
 
       // A result of 3 or -3 means that the tile the user clicked is directly above or below the empty space
       if (result === 3 || result === -3) {
-        this.swapArrayElements();
+        this.swapArrayElements(emptySpaceIndex, clickedTileIndex);
       }
       // A result of -1 means that the tile the user clicked is directly in front of the empty space
       else if (result === -1) {
         // Prevents clicked tiles at index 3 and 6 from teleporting
         // to the other side of the board ie. indexes 2 and 5 respectively.
         if (clickedTileIndex !== 3 && clickedTileIndex !== 6) {
-          this.swapArrayElements();
+          this.swapArrayElements(emptySpaceIndex, clickedTileIndex);
         }
       }
       // A result of 1 means that the tile the user clicked is directly behind the empty space
@@ -70,13 +70,13 @@ class App extends Component {
         // Prevents clicked tiles at index 2 and 5 from teleporting
         // to the other side of the board ie. indexes 3 and 6 respectively.
         if (clickedTileIndex !== 2 && clickedTileIndex !== 5) {
-          this.swapArrayElements();
+          this.swapArrayElements(emptySpaceIndex, clickedTileIndex);
         }
       }
     }
   };
 
-  swapArrayElements = () => {
+  swapArrayElements = (emptySpaceIndex, clickedTileIndex) => {
     // This function swaps the array elements
     // Im not sure how to explain it well but it works
     const newTiles = this.state.tiles.slice();
