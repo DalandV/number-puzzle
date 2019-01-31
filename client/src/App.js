@@ -25,6 +25,7 @@ class App extends Component {
       return 0.5 - Math.random();
     }),
     didUserWin: false,
+    // Change this to tiles eventually
     winningPattern: [
       { id: 1, value: 1 },
       { id: 2, value: 2 },
@@ -49,47 +50,37 @@ class App extends Component {
     const clickedTileIndex = this.state.tiles.findIndex(x => x.id === tile.id);
     // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
-      this.setState(
-        {
-          // Sets the 'clickedTileIndex' to the index of the clicked tile by comparing
-          // the id of each object in the 'tiles' array to the id of the tile passed in
-          // through the 'tileObject' prop
-          clickedTileIndex: tiles.findIndex(x => x.id === tile.id)
-        },
-        () => {
-          console.log(this.state.tiles);
-          console.log(
-            `Empty Space Index Before Swap: ${this.state.emptySpaceIndex}`
-          );
-          console.log(
-            `Clicked Tile Index Before Swap: ${this.state.clickedTileIndex}`
-          );
-          // This section makes sure that the tiles cannot jump all over the board
-          const { emptySpaceIndex, clickedTileIndex } = this.state;
-          const result = emptySpaceIndex - clickedTileIndex;
-
-          // A result of 3 or -3 means that the tile the user clicked is directly above or below the empty space
-          if (result === 3 || result === -3) {
-            this.swapArrayElements();
-          }
-          // A result of -1 means that the tile the user clicked is directly in front of the empty space
-          else if (result === -1) {
-            // Prevents clicked tiles at index 3 and 6 from teleporting
-            // to the other side of the board ie. indexes 2 and 5 respectively.
-            if (clickedTileIndex !== 3 && clickedTileIndex !== 6) {
-              this.swapArrayElements();
-            }
-          }
-          // A result of 1 means that the tile the user clicked is directly behind the empty space
-          else if (result === 1) {
-            // Prevents clicked tiles at index 2 and 5 from teleporting
-            // to the other side of the board ie. indexes 3 and 6 respectively.
-            if (clickedTileIndex !== 2 && clickedTileIndex !== 5) {
-              this.swapArrayElements();
-            }
-          }
-        }
+      console.log(this.state.tiles);
+      console.log(
+        `Empty Space Index Before Swap: ${this.state.emptySpaceIndex}`
       );
+      console.log(
+        `Clicked Tile Index Before Swap: ${this.state.clickedTileIndex}`
+      );
+      // This section makes sure that the tiles cannot jump all over the board
+      const { emptySpaceIndex, clickedTileIndex } = this.state;
+      const result = emptySpaceIndex - clickedTileIndex;
+
+      // A result of 3 or -3 means that the tile the user clicked is directly above or below the empty space
+      if (result === 3 || result === -3) {
+        this.swapArrayElements();
+      }
+      // A result of -1 means that the tile the user clicked is directly in front of the empty space
+      else if (result === -1) {
+        // Prevents clicked tiles at index 3 and 6 from teleporting
+        // to the other side of the board ie. indexes 2 and 5 respectively.
+        if (clickedTileIndex !== 3 && clickedTileIndex !== 6) {
+          this.swapArrayElements();
+        }
+      }
+      // A result of 1 means that the tile the user clicked is directly behind the empty space
+      else if (result === 1) {
+        // Prevents clicked tiles at index 2 and 5 from teleporting
+        // to the other side of the board ie. indexes 3 and 6 respectively.
+        if (clickedTileIndex !== 2 && clickedTileIndex !== 5) {
+          this.swapArrayElements();
+        }
+      }
     }
   };
 
