@@ -50,13 +50,6 @@ class App extends Component {
     const clickedTileIndex = this.state.tiles.findIndex(x => x.id === tile.id);
     // Somthing only happens when one of the number tiles are clicked
     if (tile.id > 0) {
-      console.log(this.state.tiles);
-      console.log(
-        `Empty Space Index Before Swap: ${this.state.emptySpaceIndex}`
-      );
-      console.log(
-        `Clicked Tile Index Before Swap: ${this.state.clickedTileIndex}`
-      );
       // This section makes sure that the tiles cannot jump all over the board
       const { emptySpaceIndex, clickedTileIndex } = this.state;
       const result = emptySpaceIndex - clickedTileIndex;
@@ -98,13 +91,6 @@ class App extends Component {
     this.setState(
       { tiles: newTiles, emptySpaceIndex: clickedTileIndex },
       () => {
-        console.log(this.state.tiles);
-        console.log(
-          `Empty Space Index After Swap: ${this.state.emptySpaceIndex}`
-        );
-        console.log(
-          `Clicked Tile Index After Swap: ${this.state.clickedTileIndex}`
-        );
         this.winChecker();
       }
     );
