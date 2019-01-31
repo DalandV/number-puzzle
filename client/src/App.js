@@ -58,6 +58,12 @@ class App extends Component {
         },
         () => {
           console.log(this.state.tiles);
+          console.log(
+            `Empty Space Index Before Swap: ${this.state.emptySpaceIndex}`
+          );
+          console.log(
+            `Clicked Tile Index Before Swap: ${this.state.clickedTileIndex}`
+          );
           // This section makes sure that the tiles cannot jump all over the board
           const { emptySpaceIndex, clickedTileIndex } = this.state;
           const result = emptySpaceIndex - clickedTileIndex;
@@ -90,15 +96,27 @@ class App extends Component {
   swapArrayElements = () => {
     // This function swaps the array elements
     // Im not sure how to explain it well but it works
-    const { tiles, emptySpaceIndex, clickedTileIndex } = this.state;
+    const { emptySpaceIndex, clickedTileIndex } = this.state;
 
-    const temp = tiles[emptySpaceIndex];
-    tiles[emptySpaceIndex] = tiles[clickedTileIndex];
-    tiles[clickedTileIndex] = temp;
+    const newTiles = this.state.tiles.slice();
 
-    this.setState({ emptySpaceIndex: clickedTileIndex }, () => {
-      this.winChecker();
-    });
+    const temp = newTiles[emptySpaceIndex];
+    newTiles[emptySpaceIndex] = newTiles[clickedTileIndex];
+    newTiles[clickedTileIndex] = temp;
+
+    this.setState(
+      { tiles: newTiles, emptySpaceIndex: clickedTileIndex },
+      () => {
+        console.log(this.state.tiles);
+        console.log(
+          `Empty Space Index After Swap: ${this.state.emptySpaceIndex}`
+        );
+        console.log(
+          `Clicked Tile Index After Swap: ${this.state.clickedTileIndex}`
+        );
+        this.winChecker();
+      }
+    );
   };
 
   winChecker = () => {
