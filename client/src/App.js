@@ -36,12 +36,13 @@ class App extends Component {
       { id: 0, value: 0 }
     ],
     didUserWin: false,
-
     name: ""
   };
 
   handleTileClick = tile => {
+    // Finds index of the tile with an id of 0
     const emptySpaceIndex = this.state.tilesOnBoard.findIndex(x => x.id === 0);
+    // Finds index of the tile with an id equal to the tileObject passed in through props in Tile component
     const clickedTileIndex = this.state.tilesOnBoard.findIndex(
       x => x.id === tile.id
     );
@@ -54,7 +55,8 @@ class App extends Component {
       if (result === 3 || result === -3) {
         this.swapArrayElements(emptySpaceIndex, clickedTileIndex);
       }
-      // A result of -1 means that the tile the user clicked is directly in front of the empty space
+      // A result of -1 means that the tile the user clicked is directly
+      // in front of the empty space and will be moved back one space
       else if (result === -1) {
         // Prevents clicked tiles at index 3 and 6 from teleporting
         // to the other side of the board ie. indexes 2 and 5 respectively.
@@ -62,7 +64,8 @@ class App extends Component {
           this.swapArrayElements(emptySpaceIndex, clickedTileIndex);
         }
       }
-      // A result of 1 means that the tile the user clicked is directly behind the empty space
+      // A result of 1 means that the tile the user clicked is directly
+      // behind the empty space and will be moved forward one space
       else if (result === 1) {
         // Prevents clicked tiles at index 2 and 5 from teleporting
         // to the other side of the board ie. indexes 3 and 6 respectively.
@@ -74,10 +77,10 @@ class App extends Component {
   };
 
   swapArrayElements = (emptySpaceIndex, clickedTileIndex) => {
-    // This function swaps the array elements
-    // Im not sure how to explain it well but it works
+    // Creates a new array based on current positions of tiles
     const newTiles = this.state.tilesOnBoard.slice();
 
+    // Swaps the indexes of the array elements
     const temp = newTiles[emptySpaceIndex];
     newTiles[emptySpaceIndex] = newTiles[clickedTileIndex];
     newTiles[clickedTileIndex] = temp;
