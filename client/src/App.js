@@ -1,14 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import {
-  Button,
-  Form,
-  Input,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "reactstrap";
 import Wrapper from "./components/Wrapper";
 // import ModalBS from "./components/Modal";
 import Navbar from "./components/Navbar";
@@ -18,6 +9,15 @@ import Tile from "./components/Tile";
 import NumSpan from "./components/NumSpan";
 import Footer from "./components/Footer";
 import tilesArray from "./tiles.json";
+import {
+  Button,
+  Form,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from "reactstrap";
 
 class App extends Component {
   state = {

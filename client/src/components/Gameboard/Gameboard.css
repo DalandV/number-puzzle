@@ -4,28 +4,12 @@
   border: 5px solid black;
 }
 
-#tracker {
+#reset-btn-div {
   width: 460px;
 }
 
-#tracker-btn {
+#reset-btn {
   float: right;
   background-color: #3387BE;
   color: #E9E0D6;
-}
-
-#tracker-reset {
-  float: right;
-  background-color: #3387BE;
-  color: #E9E0D6;
-}
-
-#tracker-ldr {
-  float: left;
-  background-color: #3387BE;
-  color: #E9E0D6;
-}
-
-.leaderboard {
-  float: left;
 }
