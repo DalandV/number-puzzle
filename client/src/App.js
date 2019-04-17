@@ -3,7 +3,6 @@ import "./App.css";
 import Wrapper from "./components/Wrapper";
 // import ModalBS from "./components/Modal";
 import Navbar from "./components/Navbar";
-// import Leaderboard from "./components/Leaderboard";
 import Gameboard from "./components/Gameboard";
 import Tile from "./components/Tile";
 import NumSpan from "./components/NumSpan";
