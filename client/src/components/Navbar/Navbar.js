@@ -7,12 +7,12 @@ const Navbar = props => (
       <span className="mb-0 h1 ">8 Puzzle</span>
 
       <span className="nav justify-content-end">
-        <button className="btn mr-1" id="nav-btn1">
+        {/* <button className="btn mr-1" id="nav-btn1">
           Sign Up
         </button>
         <button className="btn" id="nav-btn2">
           Login
-        </button>
+        </button> */}
       </span>
     </div>
   </nav>
