@@ -1,0 +1,33 @@
+.empty-tile {
+  background-color: black;
+  padding: 5px;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.tile {
+  background-color: #3A9AD9;
+  color: #E9E0D6;
+  padding: 5px;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 60px;
+  float: left;
+}
+
+@media only screen and (min-width: 768px) {
+  .empty-tile {
+    width: 150px;
+    height: 150px;
+  }
+
+  .tile {
+    width: 150px;
+    height: 150px;
+    font-size: 90px;
+  }
+}

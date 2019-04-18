@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer = () => (
-  <footer className="footer py-4">
+  <footer className="py-4">
     <div className="container">
       <span className="text-muted">Daland Dixon</span>
     </div>

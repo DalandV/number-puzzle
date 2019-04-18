@@ -1,34 +1,3 @@
-.navbar {
-  color: #29ABA4;
-}
-
-.navbar-brand {
-  font-size: 200px;
-}
-
-.empty-tile {
-  background-color: black;
-  padding: 5px;
-  border: 1px solid black;
-  width: 150px;
-  height: 150px;
-  /* display: inline-block; */
-  float: left;
-}
-
-.tile {
-  background-color: #3A9AD9;
-  color: #E9E0D6;
-  padding: 5px;
-  border: 1px solid black;
-  width: 150px;
-  height: 150px;
-  /* display: inline-block; */
-  text-align: center;
-  font-size: 90px;
-  float: left;
-}
-
-.wrapper {
-  background-color: #161C51;
+html, body, #root {
+  height: 100%;
 }
