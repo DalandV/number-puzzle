@@ -1,22 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import Wrapper from "./components/Wrapper";
-// import ModalBS from "./components/Modal";
+import ModalRS from "./components/Modal";
 import Navbar from "./components/Navbar";
 import Gameboard from "./components/Gameboard";
 import Tile from "./components/Tile";
 import NumSpan from "./components/NumSpan";
 import Footer from "./components/Footer";
 import tilesArray from "./tiles.json";
-import {
-  Button,
-  Form,
-  Input,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "reactstrap";
 
 class App extends Component {
   state = {
@@ -157,34 +148,13 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Modal
-          isOpen={this.state.didUserWin}
+        <ModalRS 
+          didUserWin={this.state.didUserWin}
           toggle={this.toggle}
-          centered={true}
-        >
-          <ModalHeader toggle={this.toggle}>You Won!!</ModalHeader>
-          <ModalBody>
-            Congratulations on completing the puzzle! Add your name below so
-            that you can be added to our leaderboard.
-            <Form className="mt-2">
-              <Input
-                value={this.state.name}
-                name="name"
-                type="text"
-                placeholder="Enter your name here"
-                onChange={this.handleInputChange}
-              />
-              <ModalFooter>
-                <Button color="primary" onClick={this.handleFormSubmit}>
-                  Add Me!
-                </Button>{" "}
-                <Button color="secondary" onClick={this.toggle}>
-                  Cancel
-                </Button>
-              </ModalFooter>
-            </Form>
-          </ModalBody>
-        </Modal>
+          name={this.state.name}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}
+        />
         <Navbar />
         <Gameboard resetBoard={this.resetBoard}>
           {this.state.tilesOnBoard.map(tile => (

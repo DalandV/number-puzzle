@@ -9,7 +9,7 @@ import {
   ModalFooter
 } from "reactstrap";
 
-const ModalBS = props => (
+const ModalRS = props => (
   <Modal 
     isOpen={props.didUserWin}
     toggle={props.toggle}
@@ -40,4 +40,4 @@ const ModalBS = props => (
   </Modal>
 );
 
-export default ModalBS;
+export default ModalRS;
