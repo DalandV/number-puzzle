@@ -8,6 +8,11 @@
   border: 5px solid black;
 }
 
+.gameboard-btns {
+  background-color: #3387BE;
+  color: #E9E0D6;
+}
+
 #reset-btn-div {
   width: 310px;
 }
